@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         inflateFixedWebView.setOnClickListener {
-            FixedWebView(this)
+            UiModeCareWebView(this)
             currentAppCompatThemeLabel.text = "AppCompatTheme ${getAppCompatThemeLabel()}"
             currentConfigThemeLabel.text = "ConfigurationTheme ${getConfigThemeLabel()}"
         }

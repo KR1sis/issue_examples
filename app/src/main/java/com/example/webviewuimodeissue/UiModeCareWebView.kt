@@ -7,7 +7,7 @@ import android.util.AttributeSet
 import android.webkit.WebView
 import androidx.appcompat.app.AppCompatDelegate.*
 
-class FixedWebView @JvmOverloads constructor(
+class UiModeCareWebView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
