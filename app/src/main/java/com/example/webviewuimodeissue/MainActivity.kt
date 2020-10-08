@@ -20,14 +20,17 @@ class MainActivity : AppCompatActivity() {
     private val inflateWebView: TextView
         get() = findViewById(R.id.inflate_web_view)
 
-    private val currentThemeLabel: TextView
-        get() = findViewById(R.id.current_theme_label)
+    private val currentAppCompatThemeLabel: TextView
+        get() = findViewById(R.id.current_app_compat_theme_label)
+
+    private val currentConfigThemeLabel: TextView
+        get() = findViewById(R.id.current_configuration_theme_label)
 
     private val recyclerView: RecyclerView
         get() = findViewById(R.id.recycler_view)
 
     private val isNightModeOn: Boolean
-        get() = (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
+        get() = AppCompatDelegate.MODE_NIGHT_YES == AppCompatDelegate.getDefaultNightMode()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +38,8 @@ class MainActivity : AppCompatActivity() {
 
         recyclerView.init()
 
-        currentThemeLabel.text = "Theme ${getThemeLabel()}"
+        currentAppCompatThemeLabel.text = "AppCompatTheme ${getAppCompatThemeLabel()}"
+        currentConfigThemeLabel.text = "ConfigurationTheme ${getConfigThemeLabel()}"
 
         changeThemeButton.setOnClickListener {
             toggleNightMode()
@@ -47,15 +51,24 @@ class MainActivity : AppCompatActivity() {
 
         inflateWebView.setOnClickListener {
             WebView(this)
-            currentThemeLabel.text = "Theme ${getThemeLabel()}"
+            currentAppCompatThemeLabel.text = "AppCompatTheme ${getAppCompatThemeLabel()}"
+            currentConfigThemeLabel.text = "ConfigurationTheme ${getConfigThemeLabel()}"
         }
     }
 
-    private fun getThemeLabel(): String =
-            if (isNightModeOn) {
-                "DARK"
-            } else {
-                "LIGHT"
+    private fun getConfigThemeLabel(): String {
+        return when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_YES -> "DARK"
+            Configuration.UI_MODE_NIGHT_NO -> "LIGHT"
+            else -> "UNKNOWN"
+        }
+    }
+
+    private fun getAppCompatThemeLabel(): String =
+            when (AppCompatDelegate.getDefaultNightMode()) {
+                AppCompatDelegate.MODE_NIGHT_YES -> "DARK"
+                AppCompatDelegate.MODE_NIGHT_NO -> "LIGHT"
+                else -> "UNKNOWN"
             }
 
     private fun toggleNightMode() {
@@ -65,7 +78,8 @@ class MainActivity : AppCompatActivity() {
             AppCompatDelegate.MODE_NIGHT_YES
         }
         AppCompatDelegate.setDefaultNightMode(appCompatNightMode)
-        currentThemeLabel.text = "Theme ${getThemeLabel()}"
+        currentAppCompatThemeLabel.text = "AppCompatTheme ${getAppCompatThemeLabel()}"
+        currentConfigThemeLabel.text = "ConfigurationTheme ${getConfigThemeLabel()}"
     }
 
     private fun RecyclerView.init() {
