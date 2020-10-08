@@ -20,6 +20,9 @@ class MainActivity : AppCompatActivity() {
     private val inflateWebView: TextView
         get() = findViewById(R.id.inflate_web_view)
 
+    private val inflateFixedWebView: TextView
+        get() = findViewById(R.id.inflate_fixed_web_view)
+
     private val currentAppCompatThemeLabel: TextView
         get() = findViewById(R.id.current_app_compat_theme_label)
 
@@ -51,6 +54,12 @@ class MainActivity : AppCompatActivity() {
 
         inflateWebView.setOnClickListener {
             WebView(this)
+            currentAppCompatThemeLabel.text = "AppCompatTheme ${getAppCompatThemeLabel()}"
+            currentConfigThemeLabel.text = "ConfigurationTheme ${getConfigThemeLabel()}"
+        }
+
+        inflateFixedWebView.setOnClickListener {
+            FixedWebView(this)
             currentAppCompatThemeLabel.text = "AppCompatTheme ${getAppCompatThemeLabel()}"
             currentConfigThemeLabel.text = "ConfigurationTheme ${getConfigThemeLabel()}"
         }

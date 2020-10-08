@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:background="@drawable/clickable_background"
-            android:text="Add new element" />
+            android:text="Add item" />
 
         <TextView
             android:id="@+id/change_theme_button"
@@ -32,6 +32,14 @@
             android:layout_margin="5dp"
             android:background="@drawable/clickable_background"
             android:text="Inflate WebView!" />
+
+        <TextView
+            android:id="@+id/inflate_fixed_web_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/clickable_background"
+            android:text="Inflate FixedWebView!" />
 
     </LinearLayout>
 
