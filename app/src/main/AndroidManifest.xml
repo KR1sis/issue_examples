@@ -9,7 +9,7 @@
         android:theme="@style/Theme.WebViewUiModeIssue">
         <activity
             android:name=".MainActivity"
-            android:configChanges="uiMode|orientation">
+            android:configChanges="uiMode">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
